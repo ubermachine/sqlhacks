@@ -1,0 +1,5 @@
+EXEC msdb.dbo.sp_send_dbmail  
+    @profile_name = 'support',  
+    @recipients = 'shivam.katoch@sisprosegur.com',  
+    @body = 'Test',  
+    @subject = 'Automated Success Message';

@@ -1,0 +1,5 @@
+
+select database_name, type, backup_start_date, backup_finish_date
+from msdb.dbo.backupset
+order by database_name, type, backup_start_date, backup_finish_date
+go

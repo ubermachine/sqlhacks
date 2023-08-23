@@ -1,0 +1,15 @@
+[dbo].[DSBPortal_Report] '2023-06-13','2023-06-13','1','ALL'
+USE [ReportingManagementSystem]
+GO
+CREATE NONCLUSTERED INDEX [IDX_QRCODEJune]
+ON [dbo].[DSB_QRCode_Data] ([subdivcode],[pisdepslipno],[CreatedOn])
+
+ATM master recommendation
+
+USE [ReportingManagementSystem]
+GO
+CREATE NONCLUSTERED INDEX [IDX_Branch_ID]
+ON [dbo].[Master_ATM_Details] ([Branch_ID])
+INCLUDE ([Region])
+GO
+

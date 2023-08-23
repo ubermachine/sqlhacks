@@ -1,0 +1,7 @@
+USE [ReportingManagementSystem]
+GO
+CREATE NONCLUSTERED INDEX [IDX_MAY_StatusModifiedCheck]
+ON [dbo].[Cyclo_Recon_Shortage_Status] ([Status],[Last_Modified],[Last_Modified_User],[SCO_Check])
+INCLUDE ([Recon_Shortage_Key])
+GO
+

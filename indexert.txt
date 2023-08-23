@@ -1,0 +1,3 @@
+CREATE NONCLUSTERED INDEX Fleet_Mis_Details_BranchId_idx
+ON [dbo].[Fleet_Mis_Details] ([BranchId])
+INCLUDE ([Rec_id],[RegionId],[ReportingDate],[VehicleNumber],[Make],[ChassisNumber],[ManufacturingYear],[MIS],[Reason],[VendorName],[Segment],[Company],[PresentCompany],[RouteNumber],[RouteId],[Customer],[Location],[Remarks],[DriverPat],[DriverName],[DriverMobile],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy])

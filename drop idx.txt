@@ -1,0 +1,2 @@
+DROP INDEX [idx_subbdi_pis_createdon]
+ON [dbo].[DSB_QRCode_Data];

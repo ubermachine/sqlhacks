@@ -1,0 +1,1 @@
+build in 2012 send complete folder and select web folder in iis

@@ -1,0 +1,15 @@
+select
+ object_schema_name(ps.object_id) as ObjectSchema,
+ object_name (ps.object_id) as ObjectName,
+ ps.object_id ObjectId,
+ i.name as IndexName,
+ ps.avg_fragmentation_in_percent,
+ ps.page_count
+from sys.dm_db_index_physical_stats(db_id(), null, null, null, null) ps
+inner join sys.indexes i
+ on i.object_id = ps.object_id and
+  i.index_id = ps.index_id
+where
+ avg_fragmentation_in_percent > 5 -- reorganize and rebuild
+ and ps.index_id > 0
+order by avg_fragmentation_in_percent desc

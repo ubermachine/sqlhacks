@@ -1,0 +1,7 @@
+
+USE [ReportingManagementSystem]
+GO
+CREATE NONCLUSTERED INDEX idx_testindexBank_ID
+ON [dbo].[Master_ATM_Details] ([Bank_ID])
+INCLUDE ([Branch_ID],[Branch],[City],[ClientATMID],[Bank],[MSP_ID],[ATM_Address],[Route_No],[Route_Name],[TAT],[ATMPriority],[AccessTimeFrom],[AccessTimeTo])
+GO

@@ -1,0 +1,2 @@
+1. Use temporary tables to reduce the over head of reading whole data or to make data manupulations and then select data/show data
+2. Dont use the in keyword use join or exists
