@@ -1,0 +1,9 @@
+SELECT   
+NAME as 'List Of Tables'  
+FROM SYSOBJECTS  
+WHERE ID IN (   SELECT SD.DEPID   
+                FROM SYSOBJECTS SO,   
+                SYSDEPENDS SD  
+                WHERE SO.NAME = 'Cyclo_Recon_DashboardNRT'  ----name of stored procedures  
+                AND SD.ID = SO.ID  
+            )  
