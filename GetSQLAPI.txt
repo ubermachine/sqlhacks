@@ -1,0 +1,19 @@
+Declare @WinHttpObject as Int;
+Declare @ResponseJsonText as Varchar(8000);
+ 
+Exec sp_OACreate 'WinHttp.WinHttpRequest.5.1', @WinHttpObject OUT;
+Exec sp_OAMethod @WinHttpObject, 'open', NULL, 'get', 
+'https://jsonplaceholder.typicode.com/todos/1',
+'false'
+Exec sp_OAMethod @WinHttpObject, 'send'
+Exec sp_OAMethod @WinHttpObject, 'responseText', @ResponseJsonText OUTPUT
+Exec sp_OADestroy @WinHttpObject
+IF ISJSON(@ResponseJsonText)=1
+BEGIN
+SELECT UserId, Id, Title, Completed FROM OPENJSON(@ResponseJsonText) 
+WITH(    UserId INT '$.userId',
+    Id INT '$.id',
+    Title NVARCHAR(100) '$.title',
+    Completed BIT '$.completed')
+
+END
