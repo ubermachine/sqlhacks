@@ -1,0 +1,31 @@
+DECLARE @SearchText NVARCHAR(100) = 'YourSearchText';
+DECLARE @TableName NVARCHAR(256);
+DECLARE @ColumnName NVARCHAR(128);
+DECLARE @SearchQuery NVARCHAR(MAX);
+
+SET @SearchQuery = '';
+
+DECLARE TableCursor CURSOR FOR
+SELECT t.name AS TableName, c.name AS ColumnName
+FROM sys.tables t
+INNER JOIN sys.columns c ON t.object_id = c.object_id
+WHERE c.system_type_id IN (167, 175, 231, 239) -- Data types for string-like fields
+
+OPEN TableCursor;
+FETCH NEXT FROM TableCursor INTO @TableName, @ColumnName;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SET @SearchQuery = @SearchQuery + 
+    'IF EXISTS (SELECT * FROM ' + QUOTENAME(@TableName) + 
+    ' WHERE [' + @ColumnName + '] LIKE ''%' + @SearchText + '%'') ' + 
+    'BEGIN PRINT ''Found in Table: ' + @TableName + ', Column: ' + @ColumnName + ''' END; ';
+
+    FETCH NEXT FROM TableCursor INTO @TableName, @ColumnName;
+END;
+
+CLOSE TableCursor;
+DEALLOCATE TableCursor;
+
+-- Execute the dynamic search query
+EXEC sp_executesql @SearchQuery;

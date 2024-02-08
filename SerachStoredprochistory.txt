@@ -1,0 +1,12 @@
+SELECT 
+    OBJECT_NAME(object_id) AS [Procedure Name],
+    execution_count AS [Execution Count],
+    total_elapsed_time AS [Total Elapsed Time (ms)],
+    last_execution_time AS [Last Execution Time]
+FROM 
+    sys.dm_exec_procedure_stats
+WHERE 
+    database_id = DB_ID('ReportingManagementSystem')
+ORDER BY 
+    total_elapsed_time DESC;
+	
