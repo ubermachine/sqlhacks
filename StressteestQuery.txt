@@ -1,0 +1,7 @@
+DECLARE @Counter INT = 0;
+
+WHILE @Counter < 20
+BEGIN
+    EXEC [dbo].[FLM_DispatchCall_AgentManagerWise_Details] 4, 'Pat083021';
+    SET @Counter = @Counter + 1;
+END;
