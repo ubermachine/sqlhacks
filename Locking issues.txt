@@ -1,0 +1,15 @@
+SELECT 
+    tl.resource_type,
+    tl.resource_database_id,
+    tl.resource_associated_entity_id,
+    tl.request_mode,
+    tl.request_type,
+    tl.request_status,
+    tl.request_session_id,
+    tl.request_owner_type,
+    tl.request_owner_id
+  --  OBJECT_NAME(tl.resource_associated_entity_id, tl.resource_database_id) AS object_name
+FROM 
+    sys.dm_tran_locks tl
+WHERE 
+    tl.resource_database_id = DB_ID();  

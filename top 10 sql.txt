@@ -1,5 +1,5 @@
 SELECT TOP 10 s.session_id,
-           r.status,
+           r.status,r.wait_type,
            r.cpu_time,
            r.logical_reads,
            r.reads,
